@@ -4,7 +4,7 @@ import { Controller, Get, Render } from '@nestjs/common';
 export class AppController {
   @Get()
   @Render('index')
-  index() {
-    //
+  index(): any {
+    return { body:  "Substituicao do fragmento"  };
   }
 }
