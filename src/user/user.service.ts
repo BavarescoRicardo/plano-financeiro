@@ -11,6 +11,7 @@ export class UserService {
   constructor(
     @InjectModel(User.name) private usuarioModel: Model<User>,
   ) {}
+  
   create(createUserDto: CreateUserDto) {
     try {
       const user = {
