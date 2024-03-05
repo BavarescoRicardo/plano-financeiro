@@ -19,7 +19,7 @@ export class BudgetController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.budgetService.findOne(+id);
+    return this.budgetService.findOne(id);
   }
 
   @Patch(':id')

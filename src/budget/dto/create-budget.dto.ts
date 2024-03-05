@@ -1,8 +1,10 @@
-import { IsEmail, MinLength } from 'class-validator';
+import { MinLength, IsNotEmpty } from "class-validator";
 
 export class CreateBudgetDto {
-    @MinLength(5, { message: 'The user name should be longer than 5 letters' })
-    nome: string;
+    @MinLength(5, { message: 'The budget name should be longer than 5 letters' })
+    name: string;
+    @IsNotEmpty()
     amount: number;
+    @IsNotEmpty()
     category: string;
 }

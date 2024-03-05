@@ -27,13 +27,20 @@ export class BudgetService {
   }
 
   findAll() {
-    return `This action returns all budget`;
+    try {
+      return this.budgetModel.find();
+    } catch (error) {
+      throw error;
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} budget`;
+  async findOne(name: string) {
+    try {
+      return await this.budgetModel.findOne({ name: name });
+    } catch (error) {
+      throw error;
+    }
   }
-
   update(id: number, updateBudgetDto: UpdateBudgetDto) {
     return `This action updates a #${id} budget`;
   }
