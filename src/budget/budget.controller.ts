@@ -27,8 +27,8 @@ export class BudgetController {
     return this.budgetService.update(+id, updateBudgetDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.budgetService.remove(+id);
+  @Delete(':name')
+  remove(@Param('name') name: string) {
+    return this.budgetService.remove(name);
   }
 }

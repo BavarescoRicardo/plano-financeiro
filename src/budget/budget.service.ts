@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateBudgetDto } from './dto/create-budget.dto';
 import { UpdateBudgetDto } from './dto/update-budget.dto';
 import { Budget } from './entities/budget.entity';
@@ -45,7 +45,15 @@ export class BudgetService {
     return `This action updates a #${id} budget`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} budget`;
+  async remove(name: string) {
+    try {
+      const deletedBudget = await this.budgetModel.findOneAndDelete({ name: name });
+      if (!deletedBudget) {
+        throw new NotFoundException(`Not found budget .. ${name} `);
+      }
+      return deletedBudget;
+    } catch (error) {
+      throw error;
+    }
   }
 }
