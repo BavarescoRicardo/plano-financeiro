@@ -17,9 +17,9 @@ export class BudgetController {
     return this.budgetService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.budgetService.findOne(id);
+  @Get(':nid')
+  findOne(@Param('nid') nid: string) {
+    return this.budgetService.findOne(nid);
   }
 
   @Patch(':id')
@@ -27,8 +27,8 @@ export class BudgetController {
     return this.budgetService.update(+id, updateBudgetDto);
   }
 
-  @Delete(':name')
-  remove(@Param('name') name: string) {
-    return this.budgetService.remove(name);
+  @Delete(':nid')
+  remove(@Param('nid') nid: string) {
+    return this.budgetService.remove(nid);
   }
 }

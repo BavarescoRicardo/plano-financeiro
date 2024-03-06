@@ -34,9 +34,11 @@ export class BudgetService {
     }
   }
 
-  async findOne(name: string) {
+  async findOne(nid: string) {
     try {
-      return await this.budgetModel.findOne({ name: name });
+      // return await this.budgetModel.findOne({where: { name: name }});
+      const budget = await this.budgetModel.findOne({ _id:  nid})
+      return budget;
     } catch (error) {
       throw error;
     }
@@ -45,11 +47,11 @@ export class BudgetService {
     return `This action updates a #${id} budget`;
   }
 
-  async remove(name: string) {
+  async remove(nid: string) {
     try {
-      const deletedBudget = await this.budgetModel.findOneAndDelete({ name: name });
+      const deletedBudget = await this.budgetModel.findByIdAndDelete(nid);
       if (!deletedBudget) {
-        throw new NotFoundException(`Not found budget .. ${name} `);
+        throw new NotFoundException(`Not found budget .. ${nid} `);
       }
       return deletedBudget;
     } catch (error) {
