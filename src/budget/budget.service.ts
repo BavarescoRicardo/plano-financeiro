@@ -36,7 +36,6 @@ export class BudgetService {
 
   async findOne(nid: string) {
     try {
-      // return await this.budgetModel.findOne({where: { name: name }});
       const budget = await this.budgetModel.findOne({ _id:  nid})
       return budget;
     } catch (error) {
