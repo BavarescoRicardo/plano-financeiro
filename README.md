@@ -29,6 +29,12 @@ Utilizando NestJS para backend
 By Ricardo Bavaresco
 
 
+## Pré Requisitos para execução
+# Instalar Mongo DB - Criar database com nome: finnancial
+# Instalar dependencias do npm com o comando: npm install
+# Executar backend plano-financeiro com o comando: npm start dev
+# Executar front front-financeiro com o comando: ng serve --open
+
 ## License
 
 Nest is [MIT licensed](LICENSE).
