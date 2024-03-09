@@ -15,7 +15,6 @@ import { BudgetModule } from './budget/budget.module';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (config: ConfigService) => ({
-        // uri: "mongodb+srv://bavarescoricardo:Keb05if7wRK1F5oW@financial.2edj6nn.mongodb.net/?retryWrites=true&w=majority&appName=financial",
         uri: "mongodb://localhost/finnancial",
       }),
     }),
