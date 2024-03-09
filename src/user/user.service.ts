@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -49,8 +49,16 @@ export class UserService {
     return `This action updates a #${id} usuario`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} usuario`;
+  async remove(nid: string) {
+    try {
+      const deletedBudget = await this.usuarioModel.findByIdAndDelete(nid);
+      if (!deletedBudget) {
+        throw new NotFoundException(`Not found budget .. ${nid} `);
+      }
+      return deletedBudget;
+    } catch (error) {
+      throw error;
+    }
   }
 
   criptografia(senha: string) {
