@@ -51,11 +51,11 @@ export class UserService {
 
   async remove(nid: string) {
     try {
-      const deletedBudget = await this.usuarioModel.findByIdAndDelete(nid);
-      if (!deletedBudget) {
-        throw new NotFoundException(`Not found budget .. ${nid} `);
+      const deletedUser = await this.usuarioModel.findByIdAndDelete(nid);
+      if (!deletedUser) {
+        throw new NotFoundException(`Not found user .. ${nid} `);
       }
-      return deletedBudget;
+      return deletedUser;
     } catch (error) {
       throw error;
     }
