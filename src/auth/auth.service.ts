@@ -2,14 +2,18 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../user/user.service'
 import { compareSync } from 'bcrypt';
+import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
   constructor(private usersService: UserService) {}
 
   async signIn(email: string, senha: string): Promise<any> {
-    const user = await this.usersService.findOne(email);
-    
+    Logger.log('info', email)
+    // Logger.log('info', senha)
+
+    const user = await this.usersService.findOne(email);    
+
     if (!compareSync(senha, user.senha)) {
       throw new UnauthorizedException();
     }
