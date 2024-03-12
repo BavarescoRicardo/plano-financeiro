@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
+import { User } from 'src/user/entities/user.entity';
 
 @Schema()
 export class Budget extends Document {
@@ -20,6 +21,9 @@ export class Budget extends Document {
 
   @Prop()
   endDate: Date; // End date of the budget period
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  user: User;  
 
   @Prop()
   transactions: [{ // Array of transactions associated with the budget

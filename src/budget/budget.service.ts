@@ -1,18 +1,25 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateBudgetDto } from './dto/create-budget.dto';
 import { UpdateBudgetDto } from './dto/update-budget.dto';
 import { Budget } from './entities/budget.entity';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class BudgetService {
   constructor(
     @InjectModel(Budget.name) private budgetModel: Model<Budget>,
+    @InjectModel(User.name) private userModel: Model<User>,
   ) {}
 
-  create(createBudgetDto: CreateBudgetDto) {
+  async create({ userId, ...createBudgetDto}: CreateBudgetDto) {
     try {
+      const user = this.userModel.findById(userId);
+      if(!user){
+        throw new HttpException("Usuário não encontrado", 404);
+      }
+
       const budget = {
         ...createBudgetDto,
         id: Date.now(),
@@ -20,7 +27,12 @@ export class BudgetService {
         updateDate: new Date(),
       };
       const createdBudget = new this.budgetModel(budget);
-      return createdBudget.save();
+      const savedBudget = createdBudget.save();
+      await user.updateOne({ $push: {
+        budgets: (await savedBudget)._id
+      }})
+
+      return savedBudget;
     } catch (e) {
       throw e;
     }

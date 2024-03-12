@@ -7,4 +7,7 @@ export class CreateBudgetDto {
     amount: number;
     @IsNotEmpty()
     category: string;
+
+    @IsNotEmpty()
+    userId: string;
 }
