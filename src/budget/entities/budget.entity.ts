@@ -26,7 +26,7 @@ export class Budget extends Document {
   user: User;  
 
   @Prop()
-  transactions: [{ // Array of transactions associated with the budget
+  movimento: [{ // Array of transactions associated with the budget
     description: string;
     amount: number;
     date: Date;
