@@ -10,4 +10,5 @@ export class CreateUserDto {
     message: 'A senha do usuário deve conter no minimo 5 caracteres',
   })
   senha: string;
+  budgets: string[]
 }
