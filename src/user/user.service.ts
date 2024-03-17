@@ -44,6 +44,11 @@ export class UserService {
     }
   }
 
+  async findBudgets(email: string) {
+      const user = await this.usuarioModel.findOne({ email: email }).populate('budgets');
+      return user.budgets;
+    }
+
   update(id: number, updateUsuarioDto: UpdateUserDto) {
     console.log(updateUsuarioDto);
     return `This action updates a #${id} usuario`;

@@ -22,6 +22,11 @@ export class UserController {
     return this.userService.findOne(email);
   }
 
+  @Get(':email/budgets')
+  findAllBudgets(@Param('email') email: string) {
+    return this.userService.findBudgets(email);
+  }  
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
