@@ -11,22 +11,6 @@ export class UserService {
   constructor(
     @InjectModel(User.name) private usuarioModel: Model<User>,
   ) {}
-  
-  create(createUserDto: CreateUserDto) {
-    try {
-      const user = {
-        ...createUserDto,
-        id: Date.now(),
-        senha: this.criptografia(createUserDto.senha),
-        createDate: new Date(),
-        updateDate: new Date(),
-      };
-      const createdUsuario = new this.usuarioModel(user);
-      return createdUsuario.save();
-    } catch (e) {
-      throw e;
-    }
-  }
 
   findAll() {
     try {
