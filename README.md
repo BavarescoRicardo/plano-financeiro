@@ -29,11 +29,13 @@ Utilizando NestJS para backend
 By Ricardo Bavaresco
 
 
-## Pré Requisitos para execução
-# Instalar Mongo DB - Criar database com nome: finnancial
-# Instalar dependencias do npm com o comando: npm install
-# Executar backend plano-financeiro com o comando: npm start dev
-# Executar front front-financeiro, primeiro npm install e em seguida o comando: ng serve --open
+# Pré Requisitos para execução
+## Instalar o nodejs e npm ou yarn
+## Instalar o nestjs - npm i -g @nestjs/cli
+## Instalar Mongo DB - Criar database com nome: finnancial
+## Instalar dependencias do npm com o comando: npm install
+## Executar backend plano-financeiro com o comando: npm start dev
+## Executar front front-financeiro, primeiro npm install e em seguida o comando: ng serve --open
 
 ## Rotas funcionando cadastro e exclusão : Cadastro; Meu Budget 
 
