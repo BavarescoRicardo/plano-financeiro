@@ -22,7 +22,11 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Trabalho A1 para pós Graduação 
+# Trabalho A1 para pós Graduação 
+
+# Repósitorios disponíveis em:
+#https://github.com/BavarescoRicardo/plano-financeiro
+$https://github.com/BavarescoRicardo/front-financeiro
 
 Inicio do projeto 29/02/2024
 Utilizando NestJS para backend
