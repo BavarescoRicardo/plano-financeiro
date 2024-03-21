@@ -22,7 +22,7 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-# Trabalho A1 para pós Graduação 
+# Trabalho Final para pós Graduação 
 
 # Repósitorios disponíveis em:
 #https://github.com/BavarescoRicardo/plano-financeiro
