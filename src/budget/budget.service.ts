@@ -13,25 +13,34 @@ export class BudgetService {
     @InjectModel(User.name) private userModel: Model<User>,
   ) {}
 
-  async create({ userId, ...createBudgetDto}: CreateBudgetDto) {
+  async create({ userId, ...createBudgetDto }: CreateBudgetDto) {
     try {
-      const user = this.userModel.findById(userId);
-      if(!user){
+      const user = await this.userModel.findById(userId);
+      if (!user) {
         throw new HttpException("Usuário não encontrado", 404);
       }
-
+  
       const budget = {
         ...createBudgetDto,
         id: Date.now(),
         createDate: new Date(),
         updateDate: new Date(),
       };
+  
       const createdBudget = new this.budgetModel(budget);
-      const savedBudget = createdBudget.save();
+      const savedBudget = await createdBudget.save();
+  
+      // Ensure budgets field is initialized as an array if null
+      if (!user.budgets) {
+        user.budgets = [];
+      }
+  
       await user.updateOne({ $push: {
         budgets: (await savedBudget)._id
       }})
-
+  
+      await user.save(); // Save the updated user document
+  
       return savedBudget;
     } catch (e) {
       throw e;

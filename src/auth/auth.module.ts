@@ -14,7 +14,7 @@ import { User, UserSchema } from 'src/user/entities/user.entity';
       global: true,
       // secret: jwtConstants.secret,
       secret: "codigoSecretoSubstituirEnvyy",
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '60m' },
     }),
     MongooseModule.forFeature([
       { name: User.name, schema: UserSchema },
