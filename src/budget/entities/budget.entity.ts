@@ -23,14 +23,17 @@ export class Budget extends Document {
   endDate: Date; // End date of the budget period
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
-  user: User;  
+  user: User;
 
   @Prop()
-  movimento: [{ // Array of transactions associated with the budget
-    description: string;
-    amount: number;
-    date: Date;
-  }];
+  movimento: [
+    {
+      // Array of transactions associated with the budget
+      description: string;
+      amount: number;
+      date: Date;
+    },
+  ];
 
   @Prop()
   createdAt: Date; // Date when the budget was created

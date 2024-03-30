@@ -1,6 +1,5 @@
 import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateBudgetDto } from './dto/create-budget.dto';
-import { UpdateBudgetDto } from './dto/update-budget.dto';
 import { Budget } from './entities/budget.entity';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -17,30 +16,28 @@ export class BudgetService {
     try {
       const user = await this.userModel.findById(userId);
       if (!user) {
-        throw new HttpException("Usuário não encontrado", 404);
+        throw new HttpException('Usuário não encontrado', 404);
       }
-  
+
       const budget = {
         ...createBudgetDto,
         id: Date.now(),
         createDate: new Date(),
         updateDate: new Date(),
       };
-  
+
       const createdBudget = new this.budgetModel(budget);
       const savedBudget = await createdBudget.save();
-  
+
       // Ensure budgets field is initialized as an array if null
       if (!user.budgets) {
         user.budgets = [];
       }
-  
-      await user.updateOne({ $push: {
-        budgets: (await savedBudget)._id
-      }})
-  
-      await user.save(); // Save the updated user document
-  
+
+      // Atualiza a lista de budgets para o usuario e em seguida salva
+      user.budgets.push(savedBudget._id);
+      await user.save();
+
       return savedBudget;
     } catch (e) {
       throw e;
@@ -57,14 +54,11 @@ export class BudgetService {
 
   async findOne(nid: string) {
     try {
-      const budget = await this.budgetModel.findOne({ _id:  nid})
+      const budget = await this.budgetModel.findOne({ _id: nid });
       return budget;
     } catch (error) {
       throw error;
     }
-  }
-  update(id: number, updateBudgetDto: UpdateBudgetDto) {
-    return `This action updates a #${id} budget`;
   }
 
   async remove(nid: string) {
