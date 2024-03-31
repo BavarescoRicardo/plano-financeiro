@@ -4,37 +4,38 @@ import { User } from 'src/user/entities/user.entity';
 
 @Schema()
 export class Goal extends Document {
+  @Prop()
+  descricao: string;
 
   @Prop()
-  descricao: string; 
+  previsao: Date;
 
   @Prop()
-  previsao: Date; 
+  valor: number;
 
   @Prop()
-  valor: number; 
+  imagem: string;
 
   @Prop()
-  imagem: string; 
-
-  @Prop()
-  aportes: number[]; 
+  aportes: number[];
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
-  user: User;  
+  user: User;
 
   @Prop()
-  movimento: [{ 
-    description: string;
-    amount: number;
-    date: Date;
-  }];
+  movimento: [
+    {
+      description: string;
+      amount: number;
+      date: Date;
+    },
+  ];
 
   @Prop()
-  createdAt: Date; 
+  createdAt: Date;
 
   @Prop()
-  updatedAt: Date; 
+  updatedAt: Date;
 }
 
 export const GoalSchema = SchemaFactory.createForClass(Goal);
